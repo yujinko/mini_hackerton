@@ -22,10 +22,6 @@ const router = createBrowserRouter([
     path: "/signup",
     element: <SignUp />,
   },
-  {
-    path: "/movie/:id",
-    element: <Detail />,
-  },
 ]);
 
 root.render(

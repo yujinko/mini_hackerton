@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import { useParams } from "react-router";
 import Detail from "./Detail";
+import { useParams } from "react-router";
 
 const MovieContents = () => {
   const [movieData, setMovieData] = useState([]);
@@ -57,8 +57,8 @@ const MovieContents = () => {
     <>
       <MovieContent>
         {/* <Pagination
-          activePage={5}
-          itemsCountPerPage={499}> */}
+           activePage={5}
+           itemsCountPerPage={499}> */}
         <MoviesBody>
           {movieData
             .slice(Number(page * 20), Number(page * 20 + 20))
@@ -66,14 +66,11 @@ const MovieContents = () => {
               return (
                 <MovieBody>
                   <a
-                    href="movie/:"
-                    element={<movieDetail />}
+                    href="javascript:void(0)"
                     style={{ textDecoration: "none", color: "black" }}
                   >
                     <MovieImg src={data.poster_url}></MovieImg>
-                    <MovieTitle>
-                      {data.id}:{data.title_kor}
-                    </MovieTitle>
+                    <MovieTitle>{data.title_kor}</MovieTitle>
                   </a>
                 </MovieBody>
               );
@@ -107,6 +104,7 @@ const MovieContents = () => {
     </>
   );
 };
+
 export default MovieContents;
 
 const MoviesBody = styled.div`

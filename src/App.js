@@ -5,6 +5,7 @@ import Login from "./Login";
 import Main from "./Main";
 import Search from "./Search";
 import Nav from "./Nav";
+import Footer from "./Footer";
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
     <div>
       <Nav></Nav>
       <Main></Main>
+      <Footer></Footer>
     </div>
     </>
   );
