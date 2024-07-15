@@ -39,7 +39,7 @@ export default function SignUp() {
 
   function PwChange(e) {
     console.log(e);
-    setId(e.target.value);
+    setPw(e.target.value);
   };
 
   function Pw2Change(e) {

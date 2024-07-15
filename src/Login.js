@@ -15,21 +15,6 @@ export default function Login() {
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
 
-  const getLogin = async () => {
-    try {
-        const response = await axios.post('https://hufs-mutsa-12th.store/dj/login/');
-        console.log('응답 완료');
-        localStorage.setItem("access", response.data.access);    
-        setId(response.data);
-    } catch (error) {
-        console.error('에러 : ', error);
-    }
-  }
-
-  useEffect(() => {
-    getLogin();
-  }, []);
-
   const login = async () => {
     try {
         const response = await axios.post('https://hufs-mutsa-12th.store/dj/login/', {
@@ -37,12 +22,13 @@ export default function Login() {
             password: pw,
         });
         console.log(response.data);
-        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("access", response.data.access);
         alert('로그인 성공');
-        } catch (error) {
+    } catch (error) {
         console.log(error.response.data);
         console.log(error.response.status);
         console.log(error.response.headers);
+        alert('로그인 실패');
     }
   };
 
@@ -68,7 +54,7 @@ export default function Login() {
         onChange={IdChange}/>
         <InputStyle 
         placeholder = "비밀번호를 입력해주세요"
-        value={id}
+        value={pw}
         onChange={PwChange}/>
       </div>
       
