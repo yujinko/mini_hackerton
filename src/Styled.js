@@ -56,3 +56,23 @@ export const LinkLogin = styled.div`
     text-align: right;
     padding-right: 20px;
 `
+
+export const FooterContainer = styled.div`
+    background-color: #e9ecf6;
+    padding: 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`
+export const FooterHeader = styled.div`
+    margin-top: 14px;
+    margin-bottom: 15px;
+    font-size: 20px;
+    font-weight: 700;
+`
+export const FooterContent = styled.div`
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 10px;
+`

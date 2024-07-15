@@ -6,7 +6,7 @@ import {
   InputStyle, 
   ButtonContainer,
   LinkLogin,
-   } from "./SignUp.styled";
+   } from "./Styled";
 import { Link } from 'react-router-dom'; 
 import axios from "axios";
 import Login from "./Login";
