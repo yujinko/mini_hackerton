@@ -27,8 +27,7 @@ function Detail() {
     <div className="movie-info">
       <h1>영화 정보</h1>
       {movieData && (
-        <div>
-            
+        <div className="All-content">
             <h3>{movieData.title_kor}</h3>
             <p>{movieData.title_eng}</p>
             <div className='movie-content'>
@@ -52,30 +51,37 @@ function Detail() {
                     }
                 </div>
             </div>
-              {/* <h4>[인물정보]</h4>
-              <ul>
+              <h4>[인물정보]</h4>
+              <div className="actor-list">
                 {movieData.actors.map((actor, index) => (
-                  <li key={index}>
+                  <div key={index} className="actor-item">
                     <img src={actor.image_url} alt={actor.name} style={{ maxWidth: '100px' }} />
-                    <p>{actor.name} - {actor.character}</p>
-                  </li>
+                    <p>{actor.name}</p>
+                    <p>{actor.character}</p>
+                  </div>
                 ))} 
-              </ul>
-              {/* <h4>댓글:</h4>
+              </div>
+              <h4>댓글:</h4>
+              <div id="comment-box">
+                <textarea id="comment-input" placeholder="댓글을 입력하세요."></textarea>
+                <button id="comment-submit">댓글 작성</button>
+                <div id="comment-list"></div>
+              </div>
               <ul>
                 {movieData.comments.map((comment, index) => (
                   <li key={index}>
-                    <p>{comment.user.nickname}: {comment.comment}</p>
+                    <p>{comment.user.id},{comment.user.nickname} : {comment.comment}</p>
                     <p>작성일: {comment.created_at}</p>
                   </li>
                 ))}
-              </ul> */}
-            {/* </div>)} */}
-        </div>
-        )}
+              </ul>
+             </div>)}
+
     </div>
-  );
-}
+        
+    
+  )};
+
 
 
 export default Detail;
