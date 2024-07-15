@@ -6,7 +6,7 @@ const Nav = () => {
     <div>
       <NavBody>
         <NavContents>
-          <Logo>루튼 토마토!</Logo>
+          <Logo>루튼 토마토</Logo>
           <a style={{textDecoration:"none", color:"black"}} href="/login">로그인</a>
           <a style={{textDecoration:"none", color:"black"}} href="/signup">회원가입</a>
         </NavContents>
