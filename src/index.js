@@ -5,6 +5,7 @@ import App from './App';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Login from './Login';
 import SignUp from './SignUp';
+import Detail from './Detail';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -20,6 +21,7 @@ const router = createBrowserRouter([
     path:"/signup",
     element:<SignUp/>
   }
+  
 ])
 
 root.render(

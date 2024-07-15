@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
+import Detail from './Detail'
 
 
 const MovieContents = () => {
@@ -45,39 +46,41 @@ const MovieContents = () => {
   }, [page])
 
   return (
+    
     <>
-      <MovieContent>
-        {/* <Pagination
-          activePage={5}
-          itemsCountPerPage={499}> */}
-          <MoviesBody>
-                {movieData.slice(Number(page*20),Number((page*20) + 20)).map((data) => {
-                  return(
-                  
-                    <MovieBody>
-                      <a href='javascript:void(0)' style={{textDecoration:"none", color:"black"}}>
-                        <MovieImg src={data.poster_url}></MovieImg>
-                        <MovieTitle>{data.id}:{data.title_kor}</MovieTitle>
-                      </a>
-                    </MovieBody>
-                 )
-                  })
-                }
-            </MoviesBody>
-          {/* </Pagination> */}
-      </MovieContent>
-      <PageBody>
-        {number>1?<ArrowButton onClick={handleLeftArrow}>{"<"}</ArrowButton>:<></>}
-        {number<=5?pageArray.map((page) => {
-          return(
-            <PageButton value={page} onClick={handlePageChange}>{page+1}</PageButton>
-          )
-        }):<></>}
-        {number<5?<ArrowButton onClick={handleRightArrow}>{">"}</ArrowButton>:<></>}
-      </PageBody>
-    </>
-
-  )
+       <MovieContent>
+         {/* <Pagination
+           activePage={5}
+           itemsCountPerPage={499}> */}
+           <MoviesBody>
+                 {movieData.slice(Number(page*20),Number((page*20) + 20)).map((data) => {
+                   return(
+                   
+                     <MovieBody>
+                       <a href='javascript:void(0)' style={{textDecoration:"none", color:"black"}} >
+                         <MovieImg src={data.poster_url}></MovieImg>
+                         <MovieTitle>{data.title_kor}</MovieTitle>
+                       </a>
+                     </MovieBody>
+                  )
+                   })
+                 }
+             </MoviesBody>
+           {/* </Pagination> */}
+       </MovieContent>
+       <PageBody>
+         {number>1?<ArrowButton onClick={handleLeftArrow}>{"<"}</ArrowButton>:<></>}
+         {number<=5?pageArray.map((page) => {
+           return(
+             <PageButton value={page} onClick={handlePageChange}>{page+1}</PageButton>
+           )
+         }):<></>}
+         {number<5?<ArrowButton onClick={handleRightArrow}>{">"}</ArrowButton>:<></>}
+       </PageBody>
+     </>
+       
+   )
+  
 }
 
 export default MovieContents;

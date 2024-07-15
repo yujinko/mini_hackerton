@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Detail.css';
 
-function Detail() {
+function Detail({movieId}) {
   const [movieData, setMovieData] = useState(null);
   const [selectedMovie, setSelectedMovie] = useState(true);
   const [comment, setComment] = useState('');
@@ -11,7 +11,7 @@ function Detail() {
   useEffect(() => {
     const fetchMovieData = async () => {
       try {
-        const response = await axios.get('https://port-0-minihackathon-12-lyec0qpi97716ac6.sel5.cloudtype.app/movie/1');
+        const response = await axios.get(`https://port-0-minihackathon-12-lyec0qpi97716ac6.sel5.cloudtype.app/movie/${movieId}`);
         setMovieData(response.data);
         setComments(response.data.comments);
         console.log(response);

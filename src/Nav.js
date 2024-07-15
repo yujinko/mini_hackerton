@@ -11,6 +11,7 @@ const Nav = () => {
           <a style={{textDecoration:"none", color:"black"}} href="/signup">회원가입</a>
         </NavContents>
       </NavBody>
+      
     </div>
   )
 }
