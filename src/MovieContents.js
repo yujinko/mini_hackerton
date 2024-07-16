@@ -66,7 +66,7 @@ const MovieContents = () => {
               return (
                 <MovieBody>
                   <a
-                    href="javascript:void(0)"
+                    href="/detail"
                     style={{ textDecoration: "none", color: "black" }}
                   >
                     <MovieImg src={data.poster_url}></MovieImg>
