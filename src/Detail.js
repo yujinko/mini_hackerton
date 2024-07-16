@@ -40,10 +40,15 @@ function Detail() {
 
   const handleCommentSubmit = async () => {
     try {
+      const token = localStorage.getItem('access')
       await axios.post(
         `https://minihackton.store/movie/${movieId}/comment/`,
         {
           comment: comment,
+        },{
+          headers:{
+            Authorization: `Bearer ${token}`
+          }
         }
       );
       setComment("");
@@ -120,10 +125,9 @@ function Detail() {
               {comments.map((comment, index) => (
                 <div key={index} className="comment-item">
                   <p>
-                    {/* ID : {comment.user.id} / NICKNAME : {comment.user.nickname}{" "} */}
+                    NICKNAME : {comment.nickname}{" "}
                     : {comment.comment}
                   </p>
-                  <p>작성일 : {comment.created_at}</p>
                 </div>
               ))}
             </div>
