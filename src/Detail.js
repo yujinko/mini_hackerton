@@ -3,7 +3,7 @@ import axios from "axios";
 import "./Detail.css";
 import { useParams, useNavigate } from "react-router-dom";
 import Nav from "./Nav";
-import StarRating from "./StarRating";
+import StarRating from "./StarRatings";
 
 function Detail() {
   const [movieData, setMovieData] = useState(null);
@@ -86,6 +86,7 @@ function Detail() {
       console.error("Error submitting rating:", error);
     }
   };
+
   return (
     <>
     <Nav></Nav>
@@ -136,33 +137,33 @@ function Detail() {
               <h4>별점을 남겨보세요!</h4>
               <StarRating onRatingSubmit={handleRatingSubmit} />
             </div>
-          <h4>댓글을 남겨보세요 !</h4>
-          <div id="comment-box">
-            <div className="text-box">
-              <textarea
-                id="comment-input"
-                placeholder="댓글을 입력하세요."
-                value={comment}
-                onChange={handleCommentChange}
-              ></textarea>
-              <button id="comment-submit" onClick={handleCommentSubmit}>
-                댓글 작성
-              </button>
-            </div>
-            <div id="comment-list">
-              {comments.map((comment, index) => (
-                <div key={index} className="comment-item">
-                  <p>
-                    <div className="nickname">{comment.nickname} :</div>
-                    <div className="content">{comment.comment}</div>
-                  </p>
-                </div>
-              ))}
+            <h4>댓글을 남겨보세요 !</h4>
+            <div id="comment-box">
+              <div className="text-box">
+                <textarea
+                  id="comment-input"
+                  placeholder="댓글을 입력하세요."
+                  value={comment}
+                  onChange={handleCommentChange}
+                ></textarea>
+                <button id="comment-submit" onClick={handleCommentSubmit}>
+                  댓글 작성
+                </button>
+              </div>
+              <div id="comment-list">
+                {comments.map((comment, index) => (
+                  <div key={index} className="comment-item">
+                    <p>
+                      <div className="nickname">{comment.nickname} :</div>
+                      <div className="content">{comment.comment}</div>
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
     </>
   );
 }
