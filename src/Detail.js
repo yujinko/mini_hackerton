@@ -1,22 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import './Detail.css';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import "./Detail.css";
 
-function Detail({movieId}) {
+function Detail({ movieId }) {
   const [movieData, setMovieData] = useState(null);
   const [selectedMovie, setSelectedMovie] = useState(true);
-  const [comment, setComment] = useState('');
+  const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
     const fetchMovieData = async () => {
       try {
-        const response = await axios.get(`https://port-0-minihackathon-12-lyec0qpi97716ac6.sel5.cloudtype.app/movie/${movieId}`);
-        setMovieData(response.data);
+        const response = await axios.get(
+          `https://port-0-minihackathon-12-lyec0qpi97716ac6.sel5.cloudtype.app/movie/${movieId}`
+        );
         setComments(response.data.comments);
         console.log(response);
       } catch (error) {
-        console.error('Error fetching movie data:', error);
+        console.error("Error fetching movie data:", error);
       }
     };
     fetchMovieData();
@@ -32,14 +33,19 @@ function Detail({movieId}) {
 
   const handleCommentSubmit = async () => {
     try {
-      await axios.post('https://port-0-minihackathon-12-lyec0qpi97716ac6.sel5.cloudtype.app/movie/1/comment', {
-        comment: comment,
-      });
-      setComment('');
-      const response = await axios.get('https://port-0-minihackathon-12-lyec0qpi97716ac6.sel5.cloudtype.app/movie/1');
+      await axios.post(
+        "https://port-0-minihackathon-12-lyec0qpi97716ac6.sel5.cloudtype.app/movie/1/comment",
+        {
+          comment: comment,
+        }
+      );
+      setComment("");
+      const response = await axios.get(
+        "https://port-0-minihackathon-12-lyec0qpi97716ac6.sel5.cloudtype.app/movie/1"
+      );
       setComments(response.data.comments);
     } catch (error) {
-      console.error('Error submitting comment:', error);
+      console.error("Error submitting comment:", error);
     }
   };
 
@@ -55,7 +61,7 @@ function Detail({movieId}) {
               src={movieData.poster_url}
               alt={movieData.title_kor}
               onClick={() => handleMovieClick(movieData)}
-              style={{ cursor: 'pointer' }}
+              style={{ cursor: "pointer" }}
             />
             <div className="movie-text">
               {selectedMovie && (
@@ -75,7 +81,11 @@ function Detail({movieId}) {
           <div className="actor-list">
             {movieData.actors.map((actor, index) => (
               <div key={index} className="actor-item">
-                <img src={actor.image_url} alt={actor.name} style={{ maxWidth: '100px' }} />
+                <img
+                  src={actor.image_url}
+                  alt={actor.name}
+                  style={{ maxWidth: "100px" }}
+                />
                 <p>{actor.name}</p>
                 <p>{actor.character}</p>
               </div>
@@ -95,7 +105,10 @@ function Detail({movieId}) {
             <div id="comment-list">
               {comments.map((comment, index) => (
                 <div key={index} className="comment-item">
-                  <p>ID : {comment.user.id} / NICKNAME : {comment.user.nickname} : {comment.comment}</p>
+                  <p>
+                    ID : {comment.user.id} / NICKNAME : {comment.user.nickname}{" "}
+                    : {comment.comment}
+                  </p>
                   <p>작성일 : {comment.created_at}</p>
                 </div>
               ))}
