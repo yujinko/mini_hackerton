@@ -61,9 +61,13 @@ export const FooterContainer = styled.div`
     background-color: #e9ecf6;
     padding: 2px;
     display: flex;
+    width: 100%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 100px;
+    position : relative;
+    transform : translateY(-100%);
 `
 export const FooterHeader = styled.div`
     margin-top: 14px;
