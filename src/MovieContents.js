@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 
 const MovieContents = ({ searchValue }) => {
   const [movieData, setMovieData] = useState([]);
@@ -59,14 +60,13 @@ const MovieContents = ({ searchValue }) => {
             .slice(Number(page * 20), Number(page * 20 + 20))
             .map((data) => {
               return (
-                <MovieBody key={data.id}>
-                  <a
-                    href="/detail"
+                <MovieBody>
+                  <Link key={data.id} to={`/movie/${data.id}`}
                     style={{ textDecoration: "none", color: "black" }}
                   >
                     <MovieImg src={data.poster_url}></MovieImg>
                     <MovieTitle>{data.title_kor}</MovieTitle>
-                  </a>
+                  </Link>
                 </MovieBody>
               );
             })}
