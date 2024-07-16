@@ -8,12 +8,12 @@ const Main = () => {
   const [searchValue, setSearchValue] = useState("");
 
   return (
-    <div style={{ height: 'auto', minHeight: '100%', paddingBottom: '100px' }}>
+    <div style={{ height: "800px" }}>
+      <Nav />
       <Search searchValue={searchValue} setSearchValue={setSearchValue} />
       <MovieContents searchValue={searchValue} />
       <Footer />
     </div>
   );
 };
-
 export default Main;

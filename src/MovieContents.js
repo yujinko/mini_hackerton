@@ -61,7 +61,9 @@ const MovieContents = ({ searchValue }) => {
             .map((data) => {
               return (
                 <MovieBody>
-                  <Link key={data.id} to={`/movie/${data.id}`}
+                  <Link
+                    key={data.id}
+                    to={`/movie/${data.id}`}
                     style={{ textDecoration: "none", color: "black" }}
                   >
                     <MovieImg src={data.poster_url}></MovieImg>
@@ -96,8 +98,10 @@ const MovieContents = ({ searchValue }) => {
 export default MovieContents;
 
 const Container = styled.div`
-
-`
+  height: auto;
+  min-height: 100%;
+  padding-bottom: 100px;
+`;
 
 const MoviesBody = styled.div`
   display: flex;
