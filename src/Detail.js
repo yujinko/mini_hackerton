@@ -59,6 +59,7 @@ function Detail() {
       );
       console.log(response);
       setComments(response.data.comments);
+      alert("댓글 달기 성공!");
     } catch (error) {
       console.error("Error submitting comment:", error);
       alert("로그인 필요");
