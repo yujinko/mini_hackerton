@@ -9,24 +9,9 @@ import Detail from "./Detail";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App></App>,
-  },
-  {
-    path: "/login",
-    element: <Login></Login>,
-  },
-  {
-    path: "/signup",
-    element: <SignUp />,
-  },
-]);
-
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <App />
   </React.StrictMode>
 );
 
