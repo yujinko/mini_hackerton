@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Detail.css";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Nav from "./Nav";
 
 function Detail() {
@@ -10,6 +10,7 @@ function Detail() {
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
   const { movieId } = useParams();
+  const navigate = useNavigate();
   console.log(movieId);
 
   useEffect(() => {
@@ -58,6 +59,8 @@ function Detail() {
       setComments(response.data.comments);
     } catch (error) {
       console.error("Error submitting comment:", error);
+      alert("로그인 필요");
+      navigate("/login");
     }
   };
 
