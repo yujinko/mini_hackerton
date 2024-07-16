@@ -8,7 +8,7 @@ const Main = () => {
   const [searchValue, setSearchValue] = useState("");
 
   return (
-    <div style={{ height: 'auto', minHeight: '100%', paddingBottom: '100px' }}>
+    <div>
       <Search searchValue={searchValue} setSearchValue={setSearchValue} />
       <MovieContents searchValue={searchValue} />
       <Footer />
