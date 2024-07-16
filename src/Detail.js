@@ -12,10 +12,11 @@ function Detail({ movieId }) {
     const fetchMovieData = async () => {
       try {
         const response = await axios.get(
-          `https://port-0-minihackathon-12-lyec0qpi97716ac6.sel5.cloudtype.app/movie/${movieId}`
+          `https://port-0-minihackathon-12-lyec0qpi97716ac6.sel5.cloudtype.app/movie/1`
         );
+        setMovieData(response.data)
         setComments(response.data.comments);
-        console.log(response);
+        console.log(response.data);
       } catch (error) {
         console.error("Error fetching movie data:", error);
       }
@@ -54,8 +55,10 @@ function Detail({ movieId }) {
       <h1>영화 정보</h1>
       {movieData && (
         <div className="All-content">
-          <h3>{movieData.title_kor}</h3>
-          <p>{movieData.title_eng}</p>
+          <div className="movie-title">
+            <h3>{movieData.title_kor}</h3>
+            <p>{movieData.title_eng}</p>
+          </div>
           <div className="movie-content">
             <img
               src={movieData.poster_url}
@@ -93,15 +96,17 @@ function Detail({ movieId }) {
           </div>
           <h4>댓글을 남겨보세요 !</h4>
           <div id="comment-box">
-            <textarea
-              id="comment-input"
-              placeholder="댓글을 입력하세요."
-              value={comment}
-              onChange={handleCommentChange}
-            ></textarea>
-            <button id="comment-submit" onClick={handleCommentSubmit}>
-              댓글 작성
-            </button>
+            <div className="text-box">
+              <textarea
+                id="comment-input"
+                placeholder="댓글을 입력하세요."
+                value={comment}
+                onChange={handleCommentChange}
+              ></textarea>
+              <button id="comment-submit" onClick={handleCommentSubmit}>
+                댓글 작성
+              </button>
+            </div>
             <div id="comment-list">
               {comments.map((comment, index) => (
                 <div key={index} className="comment-item">
