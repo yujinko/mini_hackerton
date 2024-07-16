@@ -1,6 +1,7 @@
 import React from "react";
 import { FooterContainer, FooterHeader, FooterContent } from "./Styled";
 
+
 export default function Footer () {
     return (
         <FooterContainer bcColor = "#e9ecf6">

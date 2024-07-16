@@ -1,24 +1,30 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Detail.css";
+import { useParams } from "react-router-dom";
+import Nav from "./Nav";
 
-function Detail({ movieId }) {
+function Detail() {
   const [movieData, setMovieData] = useState(null);
   const [selectedMovie, setSelectedMovie] = useState(true);
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
+  const {movieId} = useParams()
+  console.log(movieId)
 
   useEffect(() => {
     const fetchMovieData = async () => {
       try {
         const response = await axios.get(
-          `https://port-0-minihackathon-12-lyec0qpi97716ac6.sel5.cloudtype.app/movie/1`
+          `https://minihackton.store/movie/${movieId}/`
         );
         setMovieData(response.data)
         setComments(response.data.comments);
         console.log(response.data);
+        
       } catch (error) {
         console.error("Error fetching movie data:", error);
+        
       }
     };
     fetchMovieData();
@@ -35,15 +41,16 @@ function Detail({ movieId }) {
   const handleCommentSubmit = async () => {
     try {
       await axios.post(
-        "https://port-0-minihackathon-12-lyec0qpi97716ac6.sel5.cloudtype.app/movie/1/comment",
+        `https://minihackton.store/movie/${movieId}/comment/`,
         {
           comment: comment,
         }
       );
       setComment("");
       const response = await axios.get(
-        "https://port-0-minihackathon-12-lyec0qpi97716ac6.sel5.cloudtype.app/movie/1"
+        `https://minihackton.store/movie/${movieId}/`
       );
+      console.log(response)
       setComments(response.data.comments);
     } catch (error) {
       console.error("Error submitting comment:", error);
@@ -51,6 +58,8 @@ function Detail({ movieId }) {
   };
 
   return (
+    <>
+    <Nav></Nav>
     <div className="movie-info">
       <h1>영화 정보</h1>
       {movieData && (
@@ -111,7 +120,7 @@ function Detail({ movieId }) {
               {comments.map((comment, index) => (
                 <div key={index} className="comment-item">
                   <p>
-                    ID : {comment.user.id} / NICKNAME : {comment.user.nickname}{" "}
+                    {/* ID : {comment.user.id} / NICKNAME : {comment.user.nickname}{" "} */}
                     : {comment.comment}
                   </p>
                   <p>작성일 : {comment.created_at}</p>
@@ -122,6 +131,7 @@ function Detail({ movieId }) {
         </div>
       )}
     </div>
+    </>
   );
 }
 
