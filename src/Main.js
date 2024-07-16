@@ -9,7 +9,7 @@ import Footer from "./Footer";
 const Main = () => {
   return (
     <div>
-      <Nav />
+      <Nav/>
       <Search></Search>
       <MovieContents></MovieContents>
       <Footer />

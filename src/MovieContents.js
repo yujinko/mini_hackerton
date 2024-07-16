@@ -3,6 +3,7 @@ import axios from "axios";
 import styled from "styled-components";
 import Detail from "./Detail";
 import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 
 const MovieContents = () => {
   const [movieData, setMovieData] = useState([]);
@@ -65,13 +66,12 @@ const MovieContents = () => {
             .map((data) => {
               return (
                 <MovieBody>
-                  <a
-                    href="/detail"
+                  <Link key={data.id} to={`/movie/${data.id}`}
                     style={{ textDecoration: "none", color: "black" }}
                   >
                     <MovieImg src={data.poster_url}></MovieImg>
                     <MovieTitle>{data.title_kor}</MovieTitle>
-                  </a>
+                  </Link>
                 </MovieBody>
               );
             })}
