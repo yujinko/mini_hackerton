@@ -1,6 +1,6 @@
 .movie-info {
   padding: 20px;
-  font-family: 'Roboto', Arial, sans-serif;
+  font-family: "Roboto", Arial, sans-serif;
   background-color: #f5f5f5;
 }
 
@@ -28,11 +28,11 @@
   cursor: pointer;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
-  width:200px;
-  height:300px;
+  width: 200px;
+  height: 300px;
   position: relative;
-  top:15px;
-  margin-left:70px
+  top: 15px;
+  margin-left: 70px;
 }
 
 .movie-info img:hover {
@@ -99,14 +99,14 @@
   text-align: center;
 }
 
-.movie-content{
-  display:flex;
+.movie-content {
+  display: flex;
   align-items: center;
-  gap:30px;
+  gap: 30px;
   margin-bottom: 70px;
 }
 
-.movie-text{
+.movie-text {
   text-align: start;
   margin-right: 70px;
 }
@@ -127,13 +127,13 @@
 }
 
 .actor-item img {
-  width: 120px; 
+  width: 120px;
   height: 130px;
   border-radius: 10%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   object-fit: cover;
   margin-bottom: 30px;
-  margin-left:4px;
+  margin-left: 4px;
 }
 
 .actor-item p {
@@ -141,7 +141,7 @@
   font-size: 14px;
   font-weight: 500;
   color: #333;
-  margin-right:3px;
+  margin-right: 3px;
 }
 
 #comment-box {
@@ -163,7 +163,7 @@
 }
 
 #comment-submit {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -177,8 +177,9 @@
 }
 
 #comment-list {
-  margin-top: 20px;
-  text-align: center;
+  margin: 70px;
+  padding: 15px;
+  border-radius: 10px;
 }
 
 #comment-list li {
@@ -211,9 +212,31 @@
   text-align: center;
 }
 
-.text-box{
+.text-box {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 30px;
+}
+
+.comment-item {
+  background-color: white;
+  padding: 5px;
+  border-radius: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.nickname {
+  margin-left: 25px;
+  font-size: small;
+}
+
+.content {
+  margin-bottom: 25px;
+  margin-top: 35px;
+  padding-left: 50px;
 }
