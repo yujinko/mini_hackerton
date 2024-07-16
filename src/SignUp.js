@@ -36,7 +36,7 @@ export default function SignUp() {
   };
 
   function IdChange(e) {
-    console.log(e);
+    console.log(e.target.value);
     setId(e.target.value);
   }
 
