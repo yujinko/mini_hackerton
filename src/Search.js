@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
-const Search = ({ searchValue, setSearchValue }) => {
+const Search = () => {
+  const [searchValue, setSearchValue] = useState("");
   const handleChange = (event) => {
     setSearchValue(event.target.value);
-    console.log(event.target.value);
+    console.log(searchValue);
   };
 
   return (
