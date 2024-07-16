@@ -1,37 +1,30 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import Detail from "./Detail";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 
-const MovieContents = () => {
+const MovieContents = ({ searchValue }) => {
   const [movieData, setMovieData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
   const [page, setPage] = useState(0);
   const [pageArray, setPageArray] = useState([0, 1, 2, 3, 4]);
   const [number, setNumber] = useState(1);
-  const [isClick, setIsClick] = useState(false);
 
   function handlePageChange(event) {
     setPage(event.target.value);
-    // console.log(event.target.value)
   }
 
   function handleRightArrow() {
-    //오른쪽 화살표 넘어가기
     setNumber(number + 1);
     const num = Number(Math.floor(number) * 5);
-    console.log(number);
     setPageArray([num, num + 1, num + 2, num + 3, num + 4]);
   }
 
   function handleLeftArrow() {
-    //왼쪽 화살표 넘어가기
     if (number > 0) {
       setNumber(number - 1);
     }
-    console.log(number);
-
     const num = Number(Math.floor(number) * 5);
     setPageArray([num, num + 1, num + 2, num + 3, num + 4]);
   }
@@ -40,28 +33,30 @@ const MovieContents = () => {
     const response = await axios.get(
       "https://port-0-minihackathon-12-lyec0qpi97716ac6.sel5.cloudtype.app/movie/list"
     );
-    console.log(response.data.slice(page * 20, page * 20 + 20));
-    console.log(page);
     setMovieData(response.data);
+    setFilteredData(response.data);
   }
 
   useEffect(() => {
     getMovieData();
-  }, [page]);
+  }, []);
 
-  function MovieDetail() {
-    const params = useParams();
-    const movieID = params.id;
-  }
+  useEffect(() => {
+    if (searchValue) {
+      const filtered = movieData.filter((movie) =>
+        movie.title_kor.toLowerCase().includes(searchValue.toLowerCase())
+      );
+      setFilteredData(filtered);
+    } else {
+      setFilteredData(movieData);
+    }
+  }, [searchValue, movieData]);
 
   return (
-    <>
+    <Container>
       <MovieContent>
-        {/* <Pagination
-           activePage={5}
-           itemsCountPerPage={499}> */}
         <MoviesBody>
-          {movieData
+          {filteredData
             .slice(Number(page * 20), Number(page * 20 + 20))
             .map((data) => {
               return (
@@ -76,36 +71,35 @@ const MovieContents = () => {
               );
             })}
         </MoviesBody>
-        {/* </Pagination> */}
       </MovieContent>
       <PageBody>
         {number > 1 ? (
           <ArrowButton onClick={handleLeftArrow}>{"<"}</ArrowButton>
-        ) : (
-          <></>
-        )}
-        {number <= 5 ? (
-          pageArray.map((page) => {
-            return (
-              <PageButton value={page} onClick={handlePageChange}>
-                {page + 1}
-              </PageButton>
-            );
-          })
-        ) : (
-          <></>
-        )}
+        ) : null}
+        {number <= 5
+          ? pageArray.map((page) => {
+              return (
+                <PageButton key={page} value={page} onClick={handlePageChange}>
+                  {page + 1}
+                </PageButton>
+              );
+            })
+          : null}
         {number < 5 ? (
           <ArrowButton onClick={handleRightArrow}>{">"}</ArrowButton>
-        ) : (
-          <></>
-        )}
+        ) : null}
       </PageBody>
-    </>
+    </Container>
   );
 };
 
 export default MovieContents;
+
+const Container = styled.div`
+  height: auto;
+  min-height: 100%;
+  padding-bottom: 100px;
+`
 
 const MoviesBody = styled.div`
   display: flex;
