@@ -3,12 +3,14 @@ import axios from "axios";
 import "./Detail.css";
 import { useParams, useNavigate } from "react-router-dom";
 import Nav from "./Nav";
+import StarRating from "./StarRatings";
 
 function Detail() {
   const [movieData, setMovieData] = useState(null);
   const [selectedMovie, setSelectedMovie] = useState(true);
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
+  const [rating, setRating] = useState(0);
   const { movieId } = useParams();
   const navigate = useNavigate();
   console.log(movieId);
@@ -27,7 +29,7 @@ function Detail() {
       }
     };
     fetchMovieData();
-  }, []);
+  }, [movieId]);
 
   const handleMovieClick = (movie) => {
     setSelectedMovie(movie);
@@ -63,7 +65,29 @@ function Detail() {
       navigate("/login");
     }
   };
-
+  const handleRatingSubmit = async (rating) => {
+    try {
+      const token = localStorage.getItem("access");
+      await axios.post(
+        `https://minihackton.store/movie/${movieId}/rating/`,
+        {
+          rating: rating,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setRating(rating);
+      const response = await axios.get(
+        `https://minihackton.store/movie/${movieId}/`
+      );
+      setMovieData(response.data);
+    } catch (error) {
+      console.error("Error submitting rating:", error);
+    }
+  };
   return (
     <>
       <Nav></Nav>
@@ -109,6 +133,10 @@ function Detail() {
                   <p>{actor.character}</p>
                 </div>
               ))}
+            </div>
+            <div className="Rating-box">
+              <h4>별점을 남겨보세요!</h4>
+              <StarRating onRatingSubmit={handleRatingSubmit} />
             </div>
             <h4>댓글을 남겨보세요 !</h4>
             <div id="comment-box">
