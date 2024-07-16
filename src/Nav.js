@@ -1,13 +1,21 @@
 import React from 'react'
 import styled from 'styled-components'
+import useStore from './store'
+import useStorageStore from './storageStore';
 
 const Nav = () => {
+  const isLogin = useStore((state) => state.isLogin);
+  const loginComplete = useStore((state) => state.loginComplete);
+  const isUser = useStorageStore((state) => state.isUser);
+  const logoutComplete = useStorageStore((state) => state.logoutComplete)
+
   return (
     <div>
       <NavBody>
         <NavContents>
           <Logo>루튼 토마토</Logo>
-          <a style={{textDecoration:"none", color:"black"}} href="/login">로그인</a>
+          {isUser?<button onClick={logoutComplete}>로그아웃</button>:<a style={{textDecoration:"none", color:"black"}} href="/login">로그인</a>}
+          {console.log(isUser)}
           <a style={{textDecoration:"none", color:"black"}} href="/signup">회원가입</a>
         </NavContents>
       </NavBody>

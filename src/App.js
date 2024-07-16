@@ -6,9 +6,13 @@ import Main from "./Main";
 import Search from "./Search";
 import Nav from "./Nav";
 import Footer from "./Footer";
-import Detail from "./Detail";
+import Detail from "./Detail"
+import useStore from "./store";
 
 export default function App() {
+  const isLogin = useStore((state) => state.isLogin);
+  const loginComplete = useStore((state) => state.loginComplete);
+
   return (
     <>
       <Router>

@@ -8,12 +8,15 @@ import {
 } from "./Styled";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import useStore from "./store";
 
 export default function Login() {
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
+  const isLogin = useStore((state) => state.isLogin);
+  const loginComplete = useStore((state) => state.loginComplete);
 
   const login = async () => {
     try {
@@ -28,6 +31,7 @@ export default function Login() {
         console.log(response.data);
         localStorage.setItem("access", response.data.access);
         setShowModal(true); // 로그인 성공 시 모달을 표시
+        loginComplete();
         navigate("/"); // 로그인 성공 시 메인 페이지로 이동
       } else {
         alert("로그인 실패");
